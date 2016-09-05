@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">todolist</string>
+    <string name="new_list_input">Enter list title</string>
+    <string name="new_list_link">Create New List</string>
+    <string name="submit_list_button">Submit
+    </string>
+</resources>
