@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button mCreateButton;
     Button mViewButton;
+    Button mAboutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         mCreateButton = (Button)findViewById(R.id.create_entry);
         mViewButton = (Button)findViewById(R.id.view_lists);
+        mAboutButton = (Button)findViewById(R.id.about);
 
         mCreateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +42,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        mAboutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, About.class);
+
+                startActivity(intent);
+            }
+        });
     }
-
-
 }

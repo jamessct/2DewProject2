@@ -17,14 +17,13 @@ import android.widget.Toast;
 /**
  * Created by user on 03/09/2016.
  */
-public class ViewLists extends AppCompatActivity {
+public class ViewLists extends AppCompatActivity implements View.OnClickListener {
     private EditText editTextID;
     private EditText editTextTitle;
     private Button btnPrev;
     private Button btnSave;
     private Button btnDestroy;
     private Button btnNext;
-    private Button btnAdd;
 
     private static final String SELECT_SQL = "SELECT * FROM lists";
 
@@ -45,7 +44,11 @@ public class ViewLists extends AppCompatActivity {
         btnSave = (Button)findViewById(R.id.btnSave);
         btnDestroy = (Button)findViewById(R.id.btnDestroy);
         btnNext = (Button)findViewById(R.id.btnNext);
-        btnAdd = (Button)findViewById(R.id.btnAdd);
+
+        btnNext.setOnClickListener(this);
+        btnPrev.setOnClickListener(this);
+        btnSave.setOnClickListener(this);
+        btnDestroy.setOnClickListener(this);
 
         c = db.rawQuery(SELECT_SQL, null);
         c.moveToFirst();
@@ -58,9 +61,9 @@ public class ViewLists extends AppCompatActivity {
 
     protected void showLists() {
         String id = c.getString(0);
-        String title = c.getString(1);
+        String name = c.getString(1);
         editTextID.setText(id);
-        editTextTitle.setText(title);
+        editTextTitle.setText(name);
     }
 
     protected void moveNext() {
@@ -77,29 +80,29 @@ public class ViewLists extends AppCompatActivity {
         showLists();
     }
 
-    protected void saveRecord() {
-        String title = editTextTitle.getText().toString().trim();
+    protected void saveList() {
+        String name = editTextTitle.getText().toString().trim();
         String id = editTextID.getText().toString().trim();
 
 
-        String sql = "UPDATE lists SET title='" + title + "' WHERE id=" + id + ";";
+        String sql = "UPDATE lists SET name='" + name + "' WHERE id=" + id + ";";
 
-        if (title.equals("")) {
-            Toast.makeText(getApplicationContext(), "OOPS! Try again");
+        if (name.equals("")) {
+            Toast.makeText(getApplicationContext(), "OOPS! Try again", Toast.LENGTH_LONG).show();
             return;
         }
 
         db.execSQL(sql);
-        Toast.makeText(getApplicationContext(), "Sweet");
+        Toast.makeText(getApplicationContext(), "Sweet", Toast.LENGTH_LONG).show();
         c = db.rawQuery(SELECT_SQL, null);
         c.moveToPosition(Integer.parseInt(id));
     }
 
-    private void deleteRecord() {
+    private void deleteList() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("You totally sure about that?");
+        alertDialogBuilder.setMessage("Careful now!");
 
-        alertDialogBuilder.setPositiveButton("Yes",
+        alertDialogBuilder.setPositiveButton("Carry on",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -107,10 +110,40 @@ public class ViewLists extends AppCompatActivity {
 
                         String sql = "DELETE FROM lists WHERE id=" + id + ";";
                         db.execSQL(sql);
-                        Toast.makeText(getApplicationContext(), "Your list is no more", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Your list has been vanquished", Toast.LENGTH_LONG).show();
+                        c = db.rawQuery(SELECT_SQL, null);
+                    }
+                });
+
+        alertDialogBuilder.setNegativeButton("Nah",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
 
                     }
-                }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view == btnNext) {
+            moveNext();
+        }
+
+        if(view == btnPrev) {
+            movePrev();
+        }
+
+        if(view == btnSave) {
+            saveList();
+        }
+
+        if(view == btnDestroy) {
+            deleteList();
+        }
     }
 }
 

@@ -43,13 +43,13 @@ public class CreateEntry extends AppCompatActivity {
 
     protected void createDatabase() {
         db=openOrCreateDatabase("ListDB", Context.MODE_PRIVATE, null);
-        db.execSQL("CREATE TABLE IF NOT EXISTS lists(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS lists(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title VARCHAR);");
     }
 
     protected void insertIntoDB(){
         String name = mNewListInput.getText().toString().trim();
         if(name.equals("")){
-            Toast.makeText(getApplicationContext(),"Please fill all fields", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Cannot add blank lists", Toast.LENGTH_LONG).show();
             return;
         }
 
