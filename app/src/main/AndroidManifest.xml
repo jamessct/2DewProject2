@@ -23,7 +23,7 @@
         <activity
             android:name=".ViewLists"
             android:label="Add a new item"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".CreateEntry" />
         <activity
             android:name=".About"
             android:label="Everything you need to know about 2dew"
@@ -31,7 +31,7 @@
         <activity
             android:name=".IndividualList"
             android:label=""
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".ViewLists" />
 
     </application>
 </manifest>

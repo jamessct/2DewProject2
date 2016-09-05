@@ -23,6 +23,7 @@ public class ViewLists extends AppCompatActivity implements View.OnClickListener
     private Button btnSave;
     private Button btnDestroy;
     private Button btnNext;
+    private Button btnAdd;
 
     private static final String SELECT_SQL = "SELECT * FROM lists";
 
@@ -43,6 +44,7 @@ public class ViewLists extends AppCompatActivity implements View.OnClickListener
         btnSave = (Button)findViewById(R.id.btnSave);
         btnDestroy = (Button)findViewById(R.id.btnDestroy);
         btnNext = (Button)findViewById(R.id.btnNext);
+        btnAdd = (Button)findViewById(R.id.btnAdd);
 
         btnNext.setOnClickListener(this);
         btnPrev.setOnClickListener(this);
@@ -52,6 +54,15 @@ public class ViewLists extends AppCompatActivity implements View.OnClickListener
         c = db.rawQuery(SELECT_SQL, null);
         c.moveToFirst();
         showLists();
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(.this, About.class);
+
+                startActivity(intent);
+            }
+        });
     }
 
     protected void openDatabase() {

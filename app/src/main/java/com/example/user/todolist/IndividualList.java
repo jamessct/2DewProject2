@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -24,6 +25,20 @@ public class IndividualList extends AppCompatActivity {
         setContentView(R.layout.individual_list);
 
         createDatabase();
+
+        mSubmitEntryButton = (Button) findViewById(R.id.submit_list_button);
+        mNewEntryInput = (EditText) findViewById(R.id.new_list_input);
+
+
+
+        mSubmitEntryButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                if (view == mSubmitEntryButton) {
+                    insertIntoDB();
+
+                }
+            }
+        });
     }
 
     protected void createDatabase() {
@@ -32,13 +47,13 @@ public class IndividualList extends AppCompatActivity {
     }
 
     protected void insertIntoDB(){
-        String name = mNewEntryInput.getText().toString().trim();
-        if(name.equals("")){
+        String item = mNewEntryInput.getText().toString().trim();
+        if(item.equals("")){
             Toast.makeText(getApplicationContext(), "Cannot add blank lists", Toast.LENGTH_LONG).show();
             return;
         }
 
-        String query = "INSERT INTO lists (name) VALUES('"+name+"');";
+        String query = "INSERT INTO lists (item) VALUES('" + item +"');";
         db.execSQL(query);
         Toast.makeText(getApplicationContext(),"Got it ;)", Toast.LENGTH_LONG).show();
     }
