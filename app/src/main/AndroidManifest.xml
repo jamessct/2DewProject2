@@ -10,7 +10,7 @@
 
         <activity
             android:name=".MainActivity"
-            android:label="2 dew">
+            android:label="TA-DA!">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -23,6 +23,14 @@
         <activity
             android:name=".ViewLists"
             android:label="Add a new item"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".About"
+            android:label="Everything you need to know about 2dew"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".IndividualList"
+            android:label=""
             android:parentActivityName=".MainActivity" />
 
     </application>

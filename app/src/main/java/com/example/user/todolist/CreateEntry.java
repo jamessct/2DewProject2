@@ -43,7 +43,7 @@ public class CreateEntry extends AppCompatActivity {
 
     protected void createDatabase() {
         db=openOrCreateDatabase("ListDB", Context.MODE_PRIVATE, null);
-        db.execSQL("CREATE TABLE IF NOT EXISTS lists(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title VARCHAR);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS lists(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR);");
     }
 
     protected void insertIntoDB(){
@@ -55,7 +55,7 @@ public class CreateEntry extends AppCompatActivity {
 
         String query = "INSERT INTO lists (name) VALUES('"+name+"');";
         db.execSQL(query);
-        Toast.makeText(getApplicationContext(),"Saved Successfully", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"Got it ;)", Toast.LENGTH_LONG).show();
     }
 
     private void showLists() {
