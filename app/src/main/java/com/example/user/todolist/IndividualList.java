@@ -29,21 +29,31 @@ public class IndividualList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.individual_list);
 
+        db = ((MainApplication)getApplication()).db;
+
         mSubmitEntryButton = (Button)findViewById(R.id.submit_list_button);
         mNewEntryInput = (EditText)findViewById(R.id.new_entry_input);
 
         mSubmitEntryButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                if (view == mSubmitEntryButton) {
-//                    insertIntoDB;
 
-                    Intent intent = new Intent(IndividualList.this, DisplayListItems.class);
+                String inputEntries;
+                inputEntries = mNewEntryInput.getText().toString();
 
-                    startActivity(intent);
-                }
+
+                ListItems myNewListItem = new ListItems(inputEntries);
+
+                db.addEntry(myNewListItem);
+
+                Intent intent = new Intent(IndividualList.this, DisplayListItems.class);
+
+                startActivity(intent);
+
             }
         });
     }
+
+
 
 //    protected void createDatabase() {
 //        db=openOrCreateDatabase("ListDB", Context.MODE_PRIVATE, null);
