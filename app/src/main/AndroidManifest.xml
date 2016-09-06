@@ -32,6 +32,10 @@
             android:name=".IndividualList"
             android:label=""
             android:parentActivityName=".ViewLists" />
+        <activity
+            android:name=".DisplayListItems"
+            android:label=""
+            android:parentActivityName=".ViewLists" />
 
     </application>
 </manifest>

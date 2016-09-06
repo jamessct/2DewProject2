@@ -1,42 +1,46 @@
 package com.example.user.todolist;
 
-import android.content.DialogInterface;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ListAdapter;
+import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by user on 06/09/2016.
  */
-public class DisplayListItems extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
-
-    private ListView mListEntries;
-    private Button mAddNewEntry;
-
-    private ListAdapter mListAdapter;
-    private ArrayList<ListEntries> pojoArrayList;
+public class DisplayListItems extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display_list_items);
 
-        mListEntries = (ListView) findViewById(R.id.list_data);
-        mListEntries.setOnItemClickListener(this);
+        DatabaseHandler db = new DatabaseHandler(this);
 
-        mAddNewEntry = (Button) findViewById(R.id.another_button);
-        mAddNewEntry.setOnClickListener(this);
+        ListView listView = (ListView)findViewById(R.id.list_data);
 
-        pojoArrayList = new ArrayList<ListEntries>();
 
+
+//        ListItems[] items = {
+//                new ListItems(1, "Milk")
+//        };
+
+        ArrayList<ListItems> items = db.getAllEntries();
+
+        for (ListItems cn : items) {
+            String log = "Id: " + cn.getID() + ", Entries: " + cn.getEntry();
+        }
+
+
+
+        ArrayAdapter<ListItems> adapter = new ArrayAdapter<ListItems>(this, android.R.layout.simple_list_item_1, items);
+
+        listView.setAdapter(adapter);
     }
 }
-
-
-
-
-

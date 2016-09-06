@@ -21,4 +21,20 @@ public class ListItems {
     public String toString() {
         return this.id + ". " + this.entries;
     }
+
+    public int getID() {
+        return this.id;
+    }
+
+    public String getEntry() {
+        return this.entries;
+    }
+
+    public void setID(int id) {
+        this.id = id;
+    }
+
+    public void setEntry(String entries) {
+        this.entries = entries;
+    }
 }

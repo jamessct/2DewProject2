@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by user on 05/09/2016.
  */
@@ -55,6 +58,8 @@ public class IndividualList extends AppCompatActivity {
         db.execSQL(query);
         Toast.makeText(getApplicationContext(),"Got it ;)", Toast.LENGTH_LONG).show();
     }
+
+
 
 
 }
