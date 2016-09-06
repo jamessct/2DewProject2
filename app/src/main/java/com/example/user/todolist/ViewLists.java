@@ -58,7 +58,7 @@ public class ViewLists extends AppCompatActivity implements View.OnClickListener
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ViewLists.this, DisplayListItems.class);
+                Intent intent = new Intent(ViewLists.this, IndividualList.class);
 
                 startActivity(intent);
             }

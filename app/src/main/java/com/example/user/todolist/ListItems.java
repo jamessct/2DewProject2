@@ -8,16 +8,18 @@ public class ListItems {
     private String entries;
 
     public ListItems() {
-        super();
+
     }
 
     public ListItems(int id, String entries) {
-        super();
         this.id = id;
         this.entries = entries;
     }
 
-    @Override
+    public ListItems(String entries) {
+
+        this.entries = entries;
+    }
     public String toString() {
         return this.id + ". " + this.entries;
     }
@@ -26,7 +28,7 @@ public class ListItems {
         return this.id;
     }
 
-    public String getEntry() {
+    public String getItems() {
         return this.entries;
     }
 

@@ -7,7 +7,8 @@
         android:id="@+id/list_data"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical"/>
+        android:orientation="vertical"
+        />
 
     <Button
         android:id="@+id/another_button"

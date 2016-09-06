@@ -1,11 +1,14 @@
 package com.example.user.todolist;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -16,31 +19,52 @@ import java.util.List;
  */
 public class DisplayListItems extends AppCompatActivity {
 
+    Button mAddNewItem;
+    ListView mListView;
+
+    DatabaseHandler db;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.d("MyApp:", "DisplayListItems.onCreate() called");
         super.onCreate(savedInstanceState);
+        Log.d("MyApp:", "back from super.onCreate()");
         setContentView(R.layout.display_list_items);
 
-        DatabaseHandler db = new DatabaseHandler(this);
+        mAddNewItem = (Button)findViewById(R.id.another_button);
+        mListView = (ListView)findViewById(R.id.list_data);
 
-        ListView listView = (ListView)findViewById(R.id.list_data);
+        db = ((MainApplication)getApplication()).db;
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stringFromArrayList());
+
+        mListView.setAdapter(adapter);
+
+        mAddNewItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DisplayListItems.this, IndividualList.class);
+
+                startActivity(intent);
+            }
+        });
 
 
 
-//        ListItems[] items = {
-//                new ListItems(1, "Milk")
-//        };
+
+    }
+
+    private ArrayList<String> stringFromArrayList() {
+        ArrayList<String> entries = new ArrayList<String>();
 
         ArrayList<ListItems> items = db.getAllEntries();
+        for (ListItems item : items) {
+            String itemToAdd = item.getItems();
 
-        for (ListItems cn : items) {
-            String log = "Id: " + cn.getID() + ", Entries: " + cn.getEntry();
+            Log.d("MyApp:", "adding " + itemToAdd + " to list" );
+            entries.add(itemToAdd);
+
         }
-
-
-
-        ArrayAdapter<ListItems> adapter = new ArrayAdapter<ListItems>(this, android.R.layout.simple_list_item_1, items);
-
-        listView.setAdapter(adapter);
+        return entries;
     }
 }

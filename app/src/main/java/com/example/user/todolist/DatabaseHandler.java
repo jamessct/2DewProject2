@@ -1,5 +1,6 @@
 package com.example.user.todolist;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -36,6 +37,30 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ENTRIES);
 
         onCreate(db);
+    }
+
+    public void addEntry(ListItems listItems) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_ITEMS, listItems.getItems());
+
+        db.insert(TABLE_ENTRIES, null, values);
+        db.close();
+    }
+
+    public ListItems getListItems(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_ENTRIES, new String[] { KEY_ID,
+                        KEY_ITEMS }, KEY_ID + "=?",
+                new String[] { String.valueOf(id) }, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        ListItems listItems = new ListItems(Integer.parseInt(cursor.getString(0)),
+                cursor.getString(1));
+        return listItems;
     }
 
     public ArrayList<ListItems> getAllEntries() {
