@@ -1,8 +1,6 @@
 package com.example.user.todolist;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -12,7 +10,6 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by user on 06/09/2016.
@@ -48,10 +45,6 @@ public class DisplayListItems extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
-
     }
 
     private ArrayList<String> stringFromArrayList() {

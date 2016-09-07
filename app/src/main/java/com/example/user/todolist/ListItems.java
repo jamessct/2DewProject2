@@ -20,6 +20,7 @@ public class ListItems {
 
         this.entries = entries;
     }
+
     public String toString() {
         return this.id + ". " + this.entries;
     }

@@ -6,7 +6,7 @@
     <TextView
         android:id="@+id/about"
         android:textSize="20dp"
-        android:text="2 Dew.  For all ur to do list making requirements."
+        android:text="Ta-da.  For all ur to do list making requirements."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
