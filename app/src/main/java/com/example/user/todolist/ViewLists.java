@@ -18,49 +18,49 @@ import java.util.ArrayList;
 /**
  * Created by user on 03/09/2016.
  */
-public class ViewLists extends AppCompatActivity implements View.OnClickListener {
-    private EditText editTextID;
-    private EditText editTextTitle;
-    private Button btnPrev;
-    private Button btnSave;
-    private Button btnDestroy;
-    private Button btnNext;
+public class ViewLists extends AppCompatActivity {
+//    private EditText editTextID;
+//    private EditText editTextTitle;
+//    private Button btnPrev;
+//    private Button btnSave;
+//    private Button btnDestroy;
+//    private Button btnNext;
     private Button btnAdd;
-
-//    ListView mListView;
-
-
-    DatabaseHandler db;
-
-    private Cursor c;
+    ListView mListView;
+    DatabaseHandler db ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_list);
+        db = ((MainApplication)getApplication()).db;
 
-        editTextID = (EditText) findViewById(R.id.editTextID);
-        editTextTitle = (EditText) findViewById(R.id.editTextTitle);
-
-        btnPrev = (Button)findViewById(R.id.btnPrev);
-        btnSave = (Button)findViewById(R.id.btnSave);
-        btnDestroy = (Button)findViewById(R.id.btnDestroy);
-        btnNext = (Button)findViewById(R.id.btnNext);
         btnAdd = (Button)findViewById(R.id.btnAdd);
-//        mListView =(ListView)findViewById(R.id.list_titles);
+        mListView =(ListView)findViewById(R.id.list_titles);
 
-        btnNext.setOnClickListener(this);
-        btnPrev.setOnClickListener(this);
-        btnSave.setOnClickListener(this);
-        btnDestroy.setOnClickListener(this);
+        //final DatabaseHandler db = ((MainApplication) getApplication()).db;
 
-        db = ((MainApplication) getApplication()).db;
+//        editTextID = (EditText) findViewById(R.id.editTextID);
+//        editTextTitle = (EditText) findViewById(R.id.editTextTitle);
+
+//        btnPrev = (Button)findViewById(R.id.btnPrev);
+//        btnSave = (Button)findViewById(R.id.btnSave);
+//        btnDestroy = (Button)findViewById(R.id.btnDestroy);
+//        btnNext = (Button)findViewById(R.id.btnNext);
+
+//        btnNext.setOnClickListener(this);
+//        btnPrev.setOnClickListener(this);
+//        btnSave.setOnClickListener(this);
+//        btnDestroy.setOnClickListener(this);
+
+        //db = ((MainApplication) getApplication()).db;
 //        mListView.setAdapter(adapter);
 
-
-
-//        c.moveToFirst();
 //        showLists();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stringFromArrayList());
+
+        mListView.setAdapter(adapter);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,54 +72,53 @@ public class ViewLists extends AppCompatActivity implements View.OnClickListener
         });
     }
 
-//    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stringFromArrayList());
-//
-//    private ArrayList<String> stringFromArrayList() {
-//        ArrayList<String> entries = new ArrayList<String>();
-//
-//        ArrayList<ListTitles> titles = db.getAllLists();
-//        for (ListTitles title : titles) {
-//            String itemToAdd = title.getTitles();
-//
-//            entries.add(itemToAdd);
-//        }
-//        return entries;
-//    }
+
+
+    private ArrayList<String> stringFromArrayList() {
+        ArrayList<String> entries = new ArrayList<String>();
+
+        ArrayList<ListTitles> titles = db.getAllLists();
+        for (ListTitles title : titles) {
+            String itemToAdd = title.getTitles();
+
+            entries.add(itemToAdd);
+        }
+        return entries;
+    }
 
 //    protected void openDatabase() {
 //        db = openOrCreateDatabase("ListDB", Context.MODE_PRIVATE, null);
 //    }
 
-    protected void showLists() {
-        String id = c.getString(0);
-        String name = c.getString(1);
-        editTextID.setText(id);
-        editTextTitle.setText(name);
-    }
+//    protected void showLists(int id) {
+//        ListTitles list = db.getListTitles(id);
+//        editTextID.setText(id);
+//        editTextTitle.setText(list.getTitles());
+//    }
 
-    protected void moveNext() {
-        if(!c.isLast())
-            c.moveToNext();
+//    protected void moveNext() {
+//        if(!c.isLast())
+//            c.moveToNext();
+//
+//        showLists();
+//    }
+//
+//    protected void movePrev() {
+//        if(!c.isFirst())
+//            c.moveToPrevious();
+//
+//        showLists();
+//    }
 
-        showLists();
-    }
-
-    protected void movePrev() {
-        if(!c.isFirst())
-            c.moveToPrevious();
-
-        showLists();
-    }
-
-    protected void saveList() {
-        String name = editTextTitle.getText().toString().trim();
-        String id = editTextID.getText().toString().trim();
-
-        String inputTitles = editTextTitle.getText().toString();
-
-        ListTitles newListTitle = new ListTitles(inputTitles);
-
-        db.addEntry2(newListTitle);
+//    protected void saveList() {
+//        String name = editTextTitle.getText().toString().trim();
+//        String id = editTextID.getText().toString().trim();
+//
+//        String inputTitles = editTextTitle.getText().toString();
+//
+//        ListTitles newListTitle = new ListTitles(inputTitles);
+//
+//        db.addEntry2(newListTitle);
 
 //        String sql = "UPDATE lists SET name='" + name + "' WHERE id=" + id + ";";
 //
@@ -132,60 +131,60 @@ public class ViewLists extends AppCompatActivity implements View.OnClickListener
 //        Toast.makeText(getApplicationContext(), "Sweet", Toast.LENGTH_LONG).show();
 //        c = db.rawQuery(SELECT_SQL, null);
 //        c.moveToPosition(Integer.parseInt(id));
+
+
+//    private void deleteList() {
+//        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+//        alertDialogBuilder.setMessage("Careful now!");
+//
+//        alertDialogBuilder.setPositiveButton("Carry on",
+//                new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface arg0, int arg1) {
+//                        String id = editTextID.getText().toString().trim();
+//
+//                        String inputTitles = editTextTitle.getText().toString();
+//
+//                        ListTitles newListTitle = new ListTitles(inputTitles);
+//
+//                        db.deleteList(newListTitle);
+//
+//                        Toast.makeText(getApplicationContext(), "Your list has been vanquished", Toast.LENGTH_LONG).show();
+////                        c = db.rawQuery(SELECT_SQL, null);
+//                    }
+//                });
+
+//        alertDialogBuilder.setNegativeButton("Nah",
+//                new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface arg0, int arg1) {
+//
+//                    }
+//                });
+//
+//        AlertDialog alertDialog = alertDialogBuilder.create();
+//        alertDialog.show();
+//    }
+//
+//    @Override
+//    public void onClick(View view) {
+//        if(view == btnNext) {
+//            moveNext();
+//        }
+//
+//        if(view == btnPrev) {
+//            movePrev();
+//        }
+
+//        if(view == btnSave) {
+//            saveList();
+//        }
+//
+//        if(view == btnDestroy) {
+//            deleteList();
+//        }
     }
 
-    private void deleteList() {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Careful now!");
-
-        alertDialogBuilder.setPositiveButton("Carry on",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        String id = editTextID.getText().toString().trim();
-
-                        String inputTitles = editTextTitle.getText().toString();
-
-                        ListTitles newListTitle = new ListTitles(inputTitles);
-
-                        db.deleteList(newListTitle);
-
-                        Toast.makeText(getApplicationContext(), "Your list has been vanquished", Toast.LENGTH_LONG).show();
-//                        c = db.rawQuery(SELECT_SQL, null);
-                    }
-                });
-
-        alertDialogBuilder.setNegativeButton("Nah",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-
-                    }
-                });
-
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
-    }
-
-    @Override
-    public void onClick(View view) {
-        if(view == btnNext) {
-            moveNext();
-        }
-
-        if(view == btnPrev) {
-            movePrev();
-        }
-
-        if(view == btnSave) {
-            saveList();
-        }
-
-        if(view == btnDestroy) {
-            deleteList();
-        }
-    }
-}
 
 
 
