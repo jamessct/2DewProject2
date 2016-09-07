@@ -93,6 +93,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return listTitles;
     }
 
+    public void deleteList(ListTitles listTitle) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_LISTS, LISTS_ID + " = ?",
+                new String[] { String.valueOf(listTitle.getID())});
+        db.close();
+    }
+
     public ArrayList<ListItems> getAllEntries() {
         ArrayList<ListItems> itemsList = new ArrayList<ListItems>();
 

@@ -31,7 +31,7 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".IndividualList"
-            android:label=""
+            android:label="Individual list"
             android:parentActivityName=".ViewLists" />
         <activity
             android:name=".DisplayListItems"

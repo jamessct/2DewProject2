@@ -23,7 +23,6 @@ public class DisplayListItems extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Log.d("MyApp:", "DisplayListItems.onCreate() called");
         super.onCreate(savedInstanceState);
         Log.d("MyApp:", "back from super.onCreate()");
         setContentView(R.layout.display_list_items);
@@ -54,9 +53,7 @@ public class DisplayListItems extends AppCompatActivity {
         for (ListItems item : items) {
             String itemToAdd = item.getItems();
 
-            Log.d("MyApp:", "adding " + itemToAdd + " to list" );
             entries.add(itemToAdd);
-
         }
         return entries;
     }
