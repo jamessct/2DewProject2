@@ -1,9 +1,9 @@
 package com.example.user.todolist;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,18 +31,17 @@ public class CreateEntry extends AppCompatActivity {
 
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                if (view == mSubmitButton) {
 
                     String listEntries = mNewListInput.getText().toString();
 
-                    ListItems myNewListItem = new ListItems(listEntries);
+                    ListTitles myNewListItem = new ListTitles(listEntries);
 
-                    db.addEntry(myNewListItem);
+                    db.addEntry2(myNewListItem);
 
                     showLists();
 
                 }
-            }
+
         });
     }
 

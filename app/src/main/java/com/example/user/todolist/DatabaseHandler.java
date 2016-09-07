@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -133,8 +134,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if(cursor.moveToFirst()) {
             do {
                 ListTitles listTitles = new ListTitles();
+                Log.d("null_check - ListTitles", "" + listTitles);
                 listTitles.setID(Integer.parseInt(cursor.getString(0)));
-                listTitles.setEntry(cursor.getString(1));
+                String hopefullyTheTitle = cursor.getString(1);
+                Log.d("null_check", hopefullyTheTitle);
+                listTitles.setTitle(cursor.getString(1));
                 listTitle.add(listTitles);
             }
             while (cursor.moveToNext());

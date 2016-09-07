@@ -1,27 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/relaxing_puppy_three"
+    >
+
+    <TextView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="ta-da"
+        android:textSize="100dp"
+        android:textColor="#C5E99B"
+        android:layout_gravity="center"/>
 
     <Button
         android:id="@+id/create_entry"
         android:text="Create New Entry"
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#FFFFF3"
+        android:textColor="#A593E0"
+        android:layout_gravity="center"
         />
 
     <Button
         android:id="@+id/view_lists"
+        android:layout_marginTop="20dp"
         android:text="View Lists"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="#FFFFF3"
+        android:textColor="#A593E0"
+        android:layout_gravity="center"/>
 
     <Button
         android:id="@+id/about"
         android:text="About"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#FFFFF3"
+        android:textColor="#A593E0"
+        android:layout_gravity="center"/>
 
+    <Button
+        android:id="@+id/magic_button"
+        android:text="Magic Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#FFBC42"
+        android:textColor="#A593E0"
+        android:layout_gravity="center"/>
 
 
 </LinearLayout>

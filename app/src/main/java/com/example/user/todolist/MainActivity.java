@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     Button mCreateButton;
     Button mViewButton;
     Button mAboutButton;
+    Button mMagicButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         mCreateButton = (Button)findViewById(R.id.create_entry);
         mViewButton = (Button)findViewById(R.id.view_lists);
         mAboutButton = (Button)findViewById(R.id.about);
+        mMagicButton = (Button)findViewById(R.id.magic_button);
 
         mCreateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +49,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, About.class);
+
+                startActivity(intent);
+            }
+        });
+
+        mMagicButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, IndividualList.class);
 
                 startActivity(intent);
             }

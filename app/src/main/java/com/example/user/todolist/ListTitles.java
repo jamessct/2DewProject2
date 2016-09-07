@@ -39,7 +39,7 @@ public class ListTitles {
         this.id = id;
     }
 
-    public void setEntry(String entries) {
+    public void setTitle(String entries) {
         this.titles = titles;
     }
 }
