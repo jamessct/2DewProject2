@@ -25,7 +25,6 @@ public class CreateEntry extends AppCompatActivity {
 
         db = ((MainApplication)getApplication()).db;
 
-
         mSubmitButton = (Button) findViewById(R.id.submit_list_button);
         mNewListInput = (EditText) findViewById(R.id.new_list_input);
 
@@ -45,22 +44,6 @@ public class CreateEntry extends AppCompatActivity {
         });
     }
 
-//    protected void createDatabase() {
-//        db=openOrCreateDatabase("ListDB", Context.MODE_PRIVATE, null);
-//        db.execSQL("CREATE TABLE IF NOT EXISTS lists(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR);");
-//    }
-//
-//    protected void insertIntoDB(){
-//        String name = mNewListInput.getText().toString().trim();
-//        if(name.equals("")){
-//            Toast.makeText(getApplicationContext(),"Cannot add blank lists", Toast.LENGTH_LONG).show();
-//            return;
-//        }
-//
-//        String query = "INSERT INTO lists (name) VALUES('"+name+"');";
-//        db.execSQL(query);
-//        Toast.makeText(getApplicationContext(),"Got it ;)", Toast.LENGTH_LONG).show();
-//    }
 
     private void showLists() {
         Intent intent = new Intent(this, ViewLists.class);

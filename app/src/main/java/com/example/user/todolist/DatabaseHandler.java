@@ -24,8 +24,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String LISTS_ID = "id";
     public static final String KEY_TITLES = "title";
 
-    private Cursor c;
-
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -145,6 +143,5 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         return listTitle;
     }
-
 
 }
